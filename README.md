@@ -18,7 +18,7 @@ If there is a package for your OS you should probably use that:
 [![Packaging status](https://repology.org/badge/vertical-allrepos/v-editor.svg)](https://repology.org/project/v-editor/versions)
 
 # Usage
-This script starts the program stored in the `EDITOR` environment variable with all given arguments (by calling `$EDITOR $@`). If `EDITOR` is empty, will try to start vim instead.
+This script starts the program stored in the `EDITOR` environment variable with all given arguments (by calling `$EDITOR $@`). If `EDITOR` is empty, will try to start `vi` instead.
 
 To open `test.txt` execute:  
 `v test.txt`
