@@ -17,6 +17,8 @@ If there is a package for your OS you should probably use that:
 
 [![Packaging status](https://repology.org/badge/vertical-allrepos/v-editor.svg)](https://repology.org/project/v-editor/versions)
 
+Or just use a macro? (put this in your shell config: `alias v=$EDITOR`)
+
 # Usage
 This script starts the program stored in the `EDITOR` environment variable with all given arguments (by calling `$EDITOR $@`). If `EDITOR` is empty, will try to start `vi` instead.
 
