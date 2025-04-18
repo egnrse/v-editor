@@ -3,7 +3,7 @@
 [![GitHub last commit (branch)](https://img.shields.io/github/last-commit/egnrse/v-editor/main)](https://github.com/egnrse/v-editor/commits/main)
 [![GitHub tag (latest SemVer pre-release)](https://img.shields.io/github/v/tag/egnrse/v-editor?label=version)](https://github.com/egnrse/v-editor/releases)
 
-A simple wrapper for your editor written in bash. I just found writing `nvim` took to long, if i wanted to just edit a file. Of course u could also just use a bash/zsh macro.
+A simple wrapper for your editor written in bash. I just found writing `nvim` took to long if i wanted to just edit a file. Of course u could also just use a bash/zsh macro.
 
 # Installation
 To make `v` availabe as a system wide command:
@@ -25,3 +25,4 @@ This script starts the program stored in the `EDITOR` environment variable with 
 To open `test.txt` execute:  
 `v test.txt`
 
+There is a man page: `v.1`

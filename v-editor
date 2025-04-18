@@ -1,13 +1,7 @@
 #!/bin/env bash
 # starts your $EDITOR with all given arguments (if $EDITOR is empty: starts vi)
 #
-# to make `v` availabe as a system wide command:
-# - put this file into /usr/bin/v	(this file should be named `v`)
-# - make it executable: `sudo chmod +x v`
-# to use $EDITOR for sudo:
-# - execute `sudo visudo` and add `Defaults env_keep += EDITOR`
-# 
-# (https://github.com/egnrse/configs)
+# (https://github.com/egnrse/v-editor)
 # (by egnrse)
 
 # shows the help menu
