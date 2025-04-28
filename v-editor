@@ -4,21 +4,30 @@
 # (https://github.com/egnrse/v-editor)
 # (by egnrse)
 
+# tests for potential problems with $EDITOR and warns about them (returns >0 if any where found)
+test_command() {
+	# check if $EDITOR is empty
+	if [ -z "$EDITOR" ]; then
+		echo WARNING: \$EDITOR is not set, v-editor will try to use vi.	>&2
+	elif ! command -v "$EDITOR" >/dev/null 2>&1; then
+		echo WARNING: \$EDITOR does not hold a valid command, v-editor will try to use vi. >&2
+	else
+		return 0
+	fi
+	return 1
+}
+
 # shows the help menu
 show_help() {
-	if [ -z "$EDITOR" ]; then
-		echo WARNING: \$EDITOR is not set, v-editor will try to use vi.
-		echo ""
-	elif ! command -v "$EDITOR" >/dev/null 2>&1; then
-		echo WARNING: \$EDITOR does not hold a valid command, v-editor will try to use vi.
-		echo ""
-	fi
+	test_command
+	if [ $? -ge 1 ]; then echo ""; fi
 	echo "Usage:"
 	echo "  v [options] [editor_args...]"
 	echo ""
 	echo "Options:"
 	echo "  --vhelp       Show this help menu for v-editor and exit"
 	echo "  --vversion    Show version info for v-editor and exit"
+	echo "  --vtest       Show the command v-editor would try to execute and exit"
 	echo "  (Must be the first option provided)"
 	echo "  (All arguments not listed here are parsed as editor arguments and forwarded to the editor.)"
 	echo ""
@@ -40,24 +49,22 @@ case "$1" in
 		show_version
 		exit 0
 		;;
+	--vtest)
+		test_command
+		echo "'$EDITOR""${@/--vtest/}'"
+		exit 0
+		;;
 	-h|--help)
 		echo "(To show the helpmenu for v-editor use 'v --vhelp'.)"
 		;;
 esac
 
-# check if $EDITOR is empty
-if [ -z "$EDITOR" ]; then
-	echo "WARNING: \$EDITOR is not set, using vi" >&2
-	# $@ stores all arguments given to this command
+test_command
+if [ $? -eq 0 ]; then
+	# $@ stores all arguments given to this script
+	"$EDITOR" "$@"
+	exit $?
+else
 	vi "$@"
 	exit 255
-else
-	if command -v "$EDITOR" >/dev/null 2>&1; then
-		"$EDITOR" "$@"
-		exit $?
-	else
-		echo "ERROR: \$EDITOR does not hold a valid command, using vi" >&2
-		vi "$@"
-		exit 255
-	fi
 fi
