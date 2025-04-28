@@ -26,8 +26,8 @@ show_help() {
 	echo ""
 	echo "Options:"
 	echo "  --vhelp       Show this help menu for v-editor and exit"
-	echo "  --vversion    Show version info for v-editor and exit"
 	echo "  --vtest       Show the command v-editor would try to execute and exit"
+	echo "  --vversion    Show version info for v-editor and exit"
 	echo "  (Must be the first option provided)"
 	echo "  (All arguments not listed here are parsed as editor arguments and forwarded to the editor.)"
 	echo ""
@@ -37,7 +37,7 @@ show_help() {
 
 # shows version infos
 show_version() {
-	echo "v-editor v1.0"
+	echo "v-editor v1.1"
 }
 
 case "$1" in

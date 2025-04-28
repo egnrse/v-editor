@@ -14,6 +14,9 @@ Start the program stored in the $EDITOR environment variable with all given argu
 .B \-\-vhelp
 Show help message and exit.
 .TP
+.B \-\-vtest
+Show the command v-editor would try to execute and exit. (This will not fallback to vi, if there are any errors)
+.TP
 .B \-\-vversion
 Show version info and exit.
 .\"
@@ -28,8 +31,16 @@ To use v-editor to open a file:
 Make sure you either have set the $EDITOR environment variable to an editor (eg. nvim) you have installed or have vi installed.
 .IP "•"
 Most editors (eg. vim, nvim) support opening a file given directly as an argument. If your editor does that too, open eg. \fItest.txt\fR with:
+.IP
 .EX
 \fBv\fR \fItest.txt\fR
+.EE
+.\"
+.PP
+To find out what command is executed by v-editor (and get informed of possible errors):
+.IP
+.EX
+\fBv\fR --vtest \fR
 .EE
 .\"
 .SH AUTHOR
