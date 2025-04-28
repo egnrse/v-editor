@@ -9,6 +9,9 @@ show_help() {
 	if [ -z "$EDITOR" ]; then
 		echo WARNING: \$EDITOR is not set, v-editor will try to use vi.
 		echo ""
+	elif ! command -v "$EDITOR" >/dev/null 2>&1; then
+		echo WARNING: \$EDITOR does not hold a valid command, v-editor will try to use vi.
+		echo ""
 	fi
 	echo "Usage:"
 	echo "  v [options] [editor_args...]"
@@ -44,9 +47,17 @@ esac
 
 # check if $EDITOR is empty
 if [ -z "$EDITOR" ]; then
-	echo "\$EDITOR is not set, using vi"
+	echo "WARNING: \$EDITOR is not set, using vi" >&2
 	# $@ stores all arguments given to this command
 	vi "$@"
+	exit 255
 else
-	"$EDITOR" "$@"
+	if command -v "$EDITOR" >/dev/null 2>&1; then
+		"$EDITOR" "$@"
+		exit $?
+	else
+		echo "ERROR: \$EDITOR does not hold a valid command, using vi" >&2
+		vi "$@"
+		exit 255
+	fi
 fi

@@ -20,6 +20,8 @@ Show version info and exit.
 .SH EDITOR_ARGS
 Depends on the editor you use. You can try to use 'v -h' or 'v --help' to find them out.
 .\"
+.SH RETURN VALUES
+Returns 255 if there was an error with the given editor ($EDITOR is empty or command was not found), else returns the return value of the editor.
 .SH EXAMPLES
 To use v-editor to open a file:
 .IP "•"
